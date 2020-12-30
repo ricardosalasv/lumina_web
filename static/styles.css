@@ -13356,7 +13356,6 @@ progress {
     -ms-flex-item-align: unset;
         -ms-grid-row-align: unset;
         align-self: unset;
-    border-width: 2px;
   }
   .nav-item .nav-link {
     border: none;

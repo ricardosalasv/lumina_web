@@ -19,6 +19,7 @@ def project():
 
 @app.route("/loadProject")
 def loadProject():
+    pass
     return render_template("loadProject.html", title = "Load Project")
 
 @app.route("/catalogue")

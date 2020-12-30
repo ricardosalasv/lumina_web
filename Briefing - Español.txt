@@ -1,0 +1,22 @@
+Lumina:
+
+Se creara una aplicacion que funcione para calcular la cantidad de luces necesarias en un espacio segun la intensidad y el tipo de estas, asi como teniendo en cuenta tambien las caracteristicas formales y tectonicas, y las actividades a desarrollar en el espacio planteado.
+
+La aplicacion debera:
+
+- Realizar el calculo de cantidad de luminarias segun el Metodo de Lumen.
+- Almacenar un catalogo de lamparas segun fabricante, modelo, tipologia, intensidad, y precio de cada luminaria.
+- El usuario debera poder actualizar o agregar items en ese catalogo segun lo vea necesario.
+- El usuario debera poder guardar cada calculo realizado como un Project, para poder revisarlo mas adelante o poder actualizarlo.
+- Cada Project debera incluir la opcion de agregar tabs segun cada area del proyecto a evaluar.
+- La aplicacion debera crear una tabla de resumen de todas las lamparas calculadas para cada proyecto.
+- La aplicacion debera actualizar el presupuesto total para cada Project segun la cantidad de lamparas calculadas.
+
+Tecnologias a aplicar:
+
+- HTML
+- CSS
+- JS
+- Python
+- Flask
+- SQL

@@ -1,0 +1,107 @@
+// Custom.scss
+// Option B: Include parts of Bootstrap
+
+// Bootstrap and its default variables
+@import "../bootstrap/scss/bootstrap";
+
+// Required
+@import "../bootstrap/scss/functions";
+@import "../bootstrap/scss/variables";
+@import "../bootstrap/scss/mixins";
+
+// Optional
+@import "../bootstrap/scss/root";
+@import "../bootstrap/scss/reboot";
+@import "../bootstrap/scss/type";
+@import "../bootstrap/scss/images";
+@import "../bootstrap/scss/containers";
+@import "../bootstrap/scss/grid";
+
+
+// Declaration of color variables
+$gray01: #636363;
+$gray02: #B8B8B8;
+$grayText: #0a0a0a;
+$accent: #3288FA;
+$lightBlue: #68AAFF;
+
+// Overriding default Sass Bootstrap Colors
+$success: $green-500;
+
+
+// Styling
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: $grayText;
+}
+
+.container-fluid {
+    padding: 20 !important;
+}
+
+.navbar-toggler {
+    border-color: $grayText;
+    border-width: 2px;
+}
+
+.nav-link {
+    color: $grayText;
+    font-weight: 700;
+    font-size: 30;
+    margin-left: 5;
+    margin-right: 5;
+}
+
+.nav-link:hover {
+    color: $gray02;
+    text-shadow: 2px 2px $grayText;
+}
+
+.nav-item {
+    text-align: center;
+    align-self: center;
+    margin-left: 5px;
+    margin-right: 5px;
+    
+    a {
+        margin: 0;
+        padding: 0;
+    }
+
+    .rightBorder {
+        border-right: solid;
+        border-color: $grayText;
+    }
+
+    .leftBorder {
+        border-left: solid;
+        border-color: $grayText;
+    }
+}
+
+#navigationBar {
+    background-color: $accent;
+}
+
+
+
+// Responsive
+
+@media screen and (max-width: 992px) {
+    .nav-item {
+        text-align: right;
+        border: none;
+        align-self: unset;
+
+        .nav-link {
+            border: none;
+        }
+    }
+
+    .navbar-collapse {
+        margin-top: 15px;
+    }
+}

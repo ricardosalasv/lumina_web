@@ -1,17 +1,53 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, flash, redirect, request, url_for
+from forms import RegistrationForm, LoginForm
+import time
+
 app = Flask(__name__)
 
+app.config['SECRET_KEY'] = '6f6c96a25bbb642d5ce2c822f1a74000'
+
 @app.route("/")
-def index():
+def home():
     return render_template("home.html", title = "Home")
 
-@app.route("/register")
+@app.route("/register", methods=['GET', 'POST'])
 def register():
-    return render_template("register.html", title = "Register")
 
-@app.route("/login")
+    form = RegistrationForm()
+
+    if request.method == "POST":
+
+        if form.validate_on_submit():
+            flash(f'Account created for {form.username.data}!', 'success')
+
+            time.sleep(2)
+
+            return redirect(url_for('login'))
+            
+        else:
+            flash(f'Registration failed, please fill the fields again', 'warning')
+
+            return render_template("register.html", title = "Register", form=form)
+
+    else:
+
+        return render_template("register.html", title = "Register", form=form)
+
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    return render_template("login.html", title = "Login")
+
+    form = LoginForm()
+
+    if form.validate_on_submit():
+
+        return redirect(url_for('home'))
+        
+    else:
+        flash(f'Login failed, please fill the fields again', 'warning')
+
+        return render_template("login.html", title = "Login", form=form)
+
+    return render_template("home.html", title = "Home")
 
 @app.route("/project")
 def project():
@@ -24,3 +60,7 @@ def loadProject():
 @app.route("/catalogue")
 def catalogue():
     return render_template("catalogue.html", title = "Catalogue")
+
+@app.route("/logout")
+def logout():
+    return render_template("logout.html", title = "Logout")

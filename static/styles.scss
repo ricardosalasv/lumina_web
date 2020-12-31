@@ -1,9 +1,6 @@
 // Custom.scss
 // Option B: Include parts of Bootstrap
 
-// Bootstrap and its default variables
-@import "../bootstrap/scss/bootstrap";
-
 // Required
 @import "../bootstrap/scss/functions";
 @import "../bootstrap/scss/variables";
@@ -18,6 +15,9 @@
 @import "../bootstrap/scss/grid";
 
 
+// Overriding default Sass Bootstrap Colors
+$success: $green-400;
+
 // Declaration of color variables
 $gray01: #636363;
 $gray02: #B8B8B8;
@@ -25,9 +25,24 @@ $grayText: #0a0a0a;
 $accent: #3288FA;
 $lightBlue: #68AAFF;
 
-// Overriding default Sass Bootstrap Colors
-$success: $green-500;
+$theme-colors: (
+    "primary":    $primary,
+    "secondary":  $secondary,
+    "success":    $success,
+    "info":       $info,
+    "warning":    $warning,
+    "danger":     $danger,
+    "light":      $light,
+    "dark":       $dark,
+    "gray01":     $gray01,
+    "gray02":     $gray02,
+    "grayText":   $grayText,
+    "accent":     $accent,
+    "lightBlue":  $lightBlue
+);
 
+// Bootstrap and its default and overriden variables
+@import "../bootstrap/scss/bootstrap";
 
 // Styling
 
@@ -36,6 +51,10 @@ $success: $green-500;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     color: $grayText;
+}
+
+.mvdl_btn {
+    transform: translateX(-12px)
 }
 
 .container-fluid {
@@ -80,6 +99,11 @@ $success: $green-500;
         border-left: solid;
         border-color: $grayText;
     }
+}
+
+.registrationSection {
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 #navigationBar {

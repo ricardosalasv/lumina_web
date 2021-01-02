@@ -1,0 +1,1 @@
+from lumina import app, db

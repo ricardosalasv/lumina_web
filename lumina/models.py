@@ -1,17 +1,5 @@
-from flask import Flask, render_template, flash, redirect, request, url_for
-from flask_sqlalchemy import SQLAlchemy
-from forms import RegistrationForm, LoginForm
 from datetime import datetime
-import time
-
-app = Flask(__name__)
-
-# App configuration
-app.config['SECRET_KEY'] = '6f6c96a25bbb642d5ce2c822f1a74000'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lumina_db.db'
-
-# Initialize the database
-db = SQLAlchemy(app)
+from lumina import db
 
 class users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -72,62 +60,3 @@ class projects(db.Model): # Created projects
 
     def __repr__(self):
         return f"User('{self.name}')"
-
-@app.route("/")
-def home():
-    return render_template("home.html", title = "Home")
-
-@app.route("/register", methods=['GET', 'POST'])
-def register():
-
-    form = RegistrationForm()
-
-    if request.method == "POST":
-
-        if form.validate_on_submit():
-            flash(f'Account created for {form.username.data}!', 'success')
-
-            time.sleep(2)
-
-            return redirect(url_for('login'))
-            
-        else:
-            flash(f'Registration failed, please fill the fields again', 'warning')
-
-            return render_template("register.html", title = "Register", form=form)
-
-    else:
-
-        return render_template("register.html", title = "Register", form=form)
-
-@app.route("/login", methods=["GET", "POST"])
-def login():
-
-    form = LoginForm()
-
-    if form.validate_on_submit():
-
-        return redirect(url_for('home'))
-        
-    else:
-        flash(f'Login failed, please fill the fields again', 'warning')
-
-        return render_template("login.html", title = "Login", form=form)
-
-    return render_template("home.html", title = "Home")
-
-@app.route("/project")
-def project():
-    return render_template("project.html", title = "Project")
-
-@app.route("/loadProject")
-def loadProject():
-    return render_template("loadProject.html", title = "Load Project")
-
-@app.route("/catalogue")
-def catalogue():
-    return render_template("catalogue.html", title = "Catalogue")
-
-@app.route("/logout")
-def logout():
-    return render_template("logout.html", title = "Logout")

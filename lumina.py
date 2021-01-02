@@ -57,6 +57,7 @@ class projects(db.Model): # Created projects
     roomLenght = db.Column(db.Float)
     roomWidth = db.Column(db.Float)
     roomHeight = db.Column(db.Float)
+    roomArea = db.Column(db.Float)
     roomCeilingMaterial = db.Column(db.String(40))
     roomWallMaterial = db.Column(db.String(40))
     lux = db.Column(db.Integer)

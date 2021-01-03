@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 
@@ -9,5 +10,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lumina_db.db'
 
 # Initialize the database
 db = SQLAlchemy(app)
+
+# Initialize Bcrypt
+bcrypt = Bcrypt(app)
 
 from lumina import routes

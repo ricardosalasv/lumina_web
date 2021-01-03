@@ -1,7 +1,9 @@
 from flask import render_template, flash, redirect, request, url_for
-from lumina import app
+from lumina import app, db, bcrypt
 from lumina.forms import RegistrationForm, LoginForm
 from lumina.models import users, projects
+from datetime import datetime
+import time
 
 @app.route("/")
 def home():
@@ -15,6 +17,13 @@ def register():
     if request.method == "POST":
 
         if form.validate_on_submit():
+
+            hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+
+            user = users(username=form.username.data, email=form.email.data, password=hashed_password)
+            db.session.add(user)
+            db.session.commit()
+
             flash(f'Account created for {form.username.data}!', 'success')
 
             time.sleep(2)
@@ -40,7 +49,7 @@ def login():
         return redirect(url_for('home'))
         
     else:
-        flash(f'Login failed, please fill the fields again', 'warning')
+        # flash(f'Login failed, please fill the fields again', 'warning')
 
         return render_template("login.html", title = "Login", form=form)
 

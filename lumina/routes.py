@@ -1,5 +1,6 @@
 from flask import render_template, flash, redirect, request, url_for
-from lumina import app, db, bcrypt
+from flask_login import login_user
+from lumina import app, db, bcrypt, login_manager
 from lumina.forms import RegistrationForm, LoginForm
 from lumina.models import users, projects
 from datetime import datetime
@@ -46,14 +47,19 @@ def login():
 
     if form.validate_on_submit():
 
-        return redirect(url_for('home'))
+        user = users.query.filter_by(email=form.email.data).first()
+
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember.data)
+
+            print(f"The current user ID is: {user.id}")
+
+            return redirect(url_for('home'))
         
-    else:
-        # flash(f'Login failed, please fill the fields again', 'warning')
+        else:
+            flash(f'Login failed, please check and fill the fields again', 'warning')
 
-        return render_template("login.html", title = "Login", form=form)
-
-    return render_template("home.html", title = "Home")
+    return render_template("login.html", title = "Login", form=form)
 
 @app.route("/project")
 def project():

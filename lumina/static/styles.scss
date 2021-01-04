@@ -2,17 +2,17 @@
 // Option B: Include parts of Bootstrap
 
 // Required
-@import "../bootstrap/scss/functions";
-@import "../bootstrap/scss/variables";
-@import "../bootstrap/scss/mixins";
+@import "../../bootstrap/scss/functions";
+@import "../../bootstrap/scss/variables";
+@import "../../bootstrap/scss/mixins";
 
 // Optional
-@import "../bootstrap/scss/root";
-@import "../bootstrap/scss/reboot";
-@import "../bootstrap/scss/type";
-@import "../bootstrap/scss/images";
-@import "../bootstrap/scss/containers";
-@import "../bootstrap/scss/grid";
+@import "../../bootstrap/scss/root";
+@import "../../bootstrap/scss/reboot";
+@import "../../bootstrap/scss/type";
+@import "../../bootstrap/scss/images";
+@import "../../bootstrap/scss/containers";
+@import "../../bootstrap/scss/grid";
 
 
 // Overriding default Sass Bootstrap Colors
@@ -24,6 +24,7 @@ $gray02: #B8B8B8;
 $grayText: #0a0a0a;
 $accent: #3288FA;
 $lightBlue: #68AAFF;
+$info:  #3288FA;
 
 $theme-colors: (
     "primary":    $primary,
@@ -42,7 +43,7 @@ $theme-colors: (
 );
 
 // Bootstrap and its default and overriden variables
-@import "../bootstrap/scss/bootstrap";
+@import "../../bootstrap/scss/bootstrap";
 
 // Styling
 

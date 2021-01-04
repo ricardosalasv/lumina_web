@@ -1,5 +1,5 @@
 from flask import render_template, flash, redirect, request, url_for
-from flask_login import login_user
+from flask_login import login_user, current_user, logout_user, login_required
 from lumina import app, db, bcrypt, login_manager
 from lumina.forms import RegistrationForm, LoginForm
 from lumina.models import users, projects
@@ -7,12 +7,18 @@ from datetime import datetime
 import time
 
 @app.route("/")
+@login_required
 def home():
     return render_template("home.html", title = "Home")
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
 
+    # Redirecting to home if an user is already logged in
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+
+    # Main code
     form = RegistrationForm()
 
     if request.method == "POST":
@@ -43,6 +49,11 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
 
+    # Redirecting to home if an user is already logged in
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+
+    # Main code
     form = LoginForm()
 
     if form.validate_on_submit():
@@ -51,10 +62,11 @@ def login():
 
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
+            next_page = request.args.get('next')
 
             print(f"The current user ID is: {user.id}")
 
-            return redirect(url_for('home'))
+            return redirect(next_page) if next_page else redirect(url_for('home'))
         
         else:
             flash(f'Login failed, please check and fill the fields again', 'warning')
@@ -62,17 +74,26 @@ def login():
     return render_template("login.html", title = "Login", form=form)
 
 @app.route("/project")
+@login_required
 def project():
     return render_template("project.html", title = "Project")
 
 @app.route("/loadProject")
+@login_required
 def loadProject():
     return render_template("loadProject.html", title = "Load Project")
 
 @app.route("/catalogue")
+@login_required
 def catalogue():
     return render_template("catalogue.html", title = "Catalogue")
 
 @app.route("/logout")
+@login_required
 def logout():
-    return render_template("logout.html", title = "Logout")
+
+    print(f"The user (ID: {current_user.id}) has logged out.")
+
+    logout_user()
+
+    return redirect(url_for('login'))

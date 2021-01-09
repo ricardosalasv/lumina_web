@@ -73,10 +73,19 @@ def login():
 
     return render_template("login.html", title = "Login", form=form)
 
-@app.route("/project")
+@app.route("/project", methods=["GET", "POST"])
 @login_required
 def project():
-    return render_template("project.html", title = "Project")
+
+    if request.method == "POST":
+
+        return render_template("project.html", title = "Project", variable="POST")
+    
+    else:
+
+        return render_template("project.html", title = "Project", variable="GET")
+
+    
 
 @app.route("/loadProject")
 @login_required

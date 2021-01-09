@@ -57,6 +57,19 @@ $theme-colors: (
     box-sizing: border-box;
 }
 
+button, button:focus {
+    border: none;
+    outline: none;
+    background: none;
+    display: block;
+
+    &.active {
+        border: none;
+        outline: none;
+        background: none;
+    }
+}
+
 .container-fluid {
     padding: 20 !important;
 }
@@ -73,9 +86,10 @@ $theme-colors: (
     border-width: 10px;
     color: $grayText;
 
-    margin: 5%;
+    margin: 10%;
     margin-top: 50px;
     margin-bottom: 50px;
+    padding: 5%;
     
     svg {
         height: 300;

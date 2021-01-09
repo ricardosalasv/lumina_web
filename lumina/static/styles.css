@@ -14027,6 +14027,19 @@ fieldset:disabled .btn {
           box-sizing: border-box;
 }
 
+button, button:focus {
+  border: none;
+  outline: none;
+  background: none;
+  display: block;
+}
+
+button.active, button:focus.active {
+  border: none;
+  outline: none;
+  background: none;
+}
+
 
 .container-fluid,
 .container-sm,
@@ -14046,9 +14059,10 @@ fieldset:disabled .btn {
   border-radius: 50px;
   border-width: 10px;
   color: #0a0a0a;
-  margin: 5%;
+  margin: 10%;
   margin-top: 50px;
   margin-bottom: 50px;
+  padding: 5%;
 }
 
 .intBtn-1 svg {
@@ -14103,9 +14117,10 @@ fieldset:disabled .btn {
   border-radius: 50px;
   border-width: 10px;
   color: #0a0a0a;
-  margin: 5%;
+  margin: 10%;
   margin-top: 50px;
   margin-bottom: 50px;
+  padding: 5%;
   margin-left: 2.5%;
 }
 
@@ -14161,9 +14176,10 @@ fieldset:disabled .btn {
   border-radius: 50px;
   border-width: 10px;
   color: #0a0a0a;
-  margin: 5%;
+  margin: 10%;
   margin-top: 50px;
   margin-bottom: 50px;
+  padding: 5%;
   margin-right: 2.5%;
 }
 
@@ -14306,9 +14322,10 @@ fieldset:disabled .btn {
     border-radius: 50px;
     border-width: 10px;
     color: #0a0a0a;
-    margin: 5%;
+    margin: 10%;
     margin-top: 50px;
     margin-bottom: 50px;
+    padding: 5%;
     margin-left: 5%;
   }
   .intBtn-1-mlp25 svg {
@@ -14354,9 +14371,10 @@ fieldset:disabled .btn {
     border-radius: 50px;
     border-width: 10px;
     color: #0a0a0a;
-    margin: 5%;
+    margin: 10%;
     margin-top: 50px;
     margin-bottom: 50px;
+    padding: 5%;
     margin-right: 5%;
   }
   .intBtn-1-mrp25 svg {

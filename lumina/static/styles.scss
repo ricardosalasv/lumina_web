@@ -246,18 +246,29 @@ button, button:focus {
     .navbar-collapse {
         margin-top: 15px;
     }
+
+    .intBtn-1-mlp25 {
+        @include interactiveButton();
+        margin-left: 10%;
+    }
+    
+    .intBtn-1-mrp25 {
+        @include interactiveButton();
+        margin-right: 10%;
+    }
+
 }
 
 @media screen and (max-width: 600px) {
     
     .intBtn-1-mlp25 {
         @include interactiveButton();
-        margin-left: 5%;
+        margin-left: 10%;
     }
     
     .intBtn-1-mrp25 {
         @include interactiveButton();
-        margin-right: 5%;
+        margin-right: 10%;
     }
 
 }

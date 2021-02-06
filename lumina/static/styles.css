@@ -14314,9 +14314,6 @@ button.active, button:focus.active {
   .navbar-collapse {
     margin-top: 15px;
   }
-}
-
-@media screen and (max-width: 600px) {
   .intBtn-1-mlp25 {
     border: solid;
     border-radius: 50px;
@@ -14326,7 +14323,7 @@ button.active, button:focus.active {
     margin-top: 50px;
     margin-bottom: 50px;
     padding: 5%;
-    margin-left: 5%;
+    margin-left: 10%;
   }
   .intBtn-1-mlp25 svg {
     height: 300;
@@ -14375,7 +14372,108 @@ button.active, button:focus.active {
     margin-top: 50px;
     margin-bottom: 50px;
     padding: 5%;
-    margin-right: 5%;
+    margin-right: 10%;
+  }
+  .intBtn-1-mrp25 svg {
+    height: 300;
+    width: 300;
+    fill: #0a0a0a;
+    fill-rule: evenodd;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .intBtn-1-mrp25 p {
+    font-size: 75px;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none !important;
+  }
+  .intBtn-1-mrp25 .row {
+    padding-top: 25%;
+    padding-bottom: 25%;
+  }
+  .intBtn-1-mrp25:hover {
+    color: #3288FA;
+  }
+  .intBtn-1-mrp25:hover svg {
+    fill: #3288FA;
+    fill-rule: evenodd;
+  }
+  .intBtn-1-mrp25:hover p {
+    color: #3288FA;
+  }
+  .intBtn-1-mrp25:active {
+    color: #0a0a0a;
+  }
+  .intBtn-1-mrp25:active svg {
+    fill: #0a0a0a;
+    fill-rule: evenodd;
+  }
+  .intBtn-1-mrp25:active p {
+    color: #0a0a0a;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .intBtn-1-mlp25 {
+    border: solid;
+    border-radius: 50px;
+    border-width: 10px;
+    color: #0a0a0a;
+    margin: 10%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 5%;
+    margin-left: 10%;
+  }
+  .intBtn-1-mlp25 svg {
+    height: 300;
+    width: 300;
+    fill: #0a0a0a;
+    fill-rule: evenodd;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .intBtn-1-mlp25 p {
+    font-size: 75px;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none !important;
+  }
+  .intBtn-1-mlp25 .row {
+    padding-top: 25%;
+    padding-bottom: 25%;
+  }
+  .intBtn-1-mlp25:hover {
+    color: #3288FA;
+  }
+  .intBtn-1-mlp25:hover svg {
+    fill: #3288FA;
+    fill-rule: evenodd;
+  }
+  .intBtn-1-mlp25:hover p {
+    color: #3288FA;
+  }
+  .intBtn-1-mlp25:active {
+    color: #0a0a0a;
+  }
+  .intBtn-1-mlp25:active svg {
+    fill: #0a0a0a;
+    fill-rule: evenodd;
+  }
+  .intBtn-1-mlp25:active p {
+    color: #0a0a0a;
+  }
+  .intBtn-1-mrp25 {
+    border: solid;
+    border-radius: 50px;
+    border-width: 10px;
+    color: #0a0a0a;
+    margin: 10%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 5%;
+    margin-right: 10%;
   }
   .intBtn-1-mrp25 svg {
     height: 300;

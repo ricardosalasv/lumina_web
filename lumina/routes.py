@@ -7,6 +7,7 @@ from datetime import datetime
 import time
 
 @app.route("/")
+@app.route("/home")
 @login_required
 def home():
     return render_template("home.html", title = "Home")

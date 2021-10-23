@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <script src="../static/heightFiller.js"></script>
+
+    <section class="container-fluid gray-background">
+
+        <div id="mainSection" class="row justify-content-center no-decoration">
+
+            <form action="" method="POST" class="form-createProject">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group">
+
+                    <legend class="border-bottom mb-4"><h1><strong>Create Project</strong></h1></legend>
+
+                    <div class="form-group">
+                        {{ form.projectName.label(class="form-control-label") }}
+
+                        {% if form.projectName.errors %}
+                            {{ form.projectName(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.projectName.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.projectName(class="form-control") }}
+                        {% endif%}
+                    </div>
+                </fieldset>
+                <button class="btn mvdl_btn center-element">
+                    {{form.createProject(class="btn btn-primary", value="Create Project")}}
+                </button>
+            </form>
+            
+        </div>
+        
+    </section>
+
+{% endblock %}

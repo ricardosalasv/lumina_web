@@ -1,8 +1,10 @@
-from flask import render_template, flash, redirect, request, url_for
+from flask import render_template, flash, redirect, request, url_for, session, jsonify
 from flask_login import login_user, current_user, logout_user, login_required
 from lumina import app, db, bcrypt, login_manager
-from lumina.forms import RegistrationForm, LoginForm
-from lumina.models import users, projects
+from lumina.forms import RegistrationForm, LoginForm, CreateProjectForm
+from lumina.models import Users, Projects, Models, Finishes, Arch_Materials, Brands, Floorplan_Shapes
+from lumina.helpers import GenerateProjectCode
+import json
 from datetime import datetime
 import time
 
@@ -28,7 +30,7 @@ def register():
 
             hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
 
-            user = users(username=form.username.data, email=form.email.data, password=hashed_password)
+            user = Users(username=form.username.data, email=form.email.data, password=hashed_password)
             db.session.add(user)
             db.session.commit()
 
@@ -59,7 +61,10 @@ def login():
 
     if form.validate_on_submit():
 
-        user = users.query.filter_by(email=form.email.data).first()
+        user = Users.query.filter_by(email=form.email.data).first()
+
+        if not user:
+            user = Users.query.filter_by(username=form.email.data).first()
 
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
@@ -80,13 +85,51 @@ def project():
 
     if request.method == "POST":
 
-        return render_template("project.html", title = "Project", variable="POST")
+        project = session["projectData"]
+        project = json.loads(project)
+        print("---------------------------")
+        print(project)
+        print("---------------------------")
+
+        return render_template("project.html", project=project)
     
     else:
 
         return render_template("project.html", title = "Project", variable="GET")
 
-    
+@app.route("/newProject", methods=["GET", "POST"])
+@login_required
+def newProject():
+
+    form = CreateProjectForm()
+
+    if form.validate_on_submit():
+
+        # Creating new project information
+        projectName = form.projectName.data
+        
+        projectCode = GenerateProjectCode(current_user, projectName)
+
+        project = Projects(
+            name=projectName, 
+            projectCode=projectCode, 
+            user_id=current_user.id, 
+            model_id=Models.query.all()[0].id,
+            fpShape_id=list(filter(lambda x : x.name == "Rectangular", Floorplan_Shapes.query.all()))[0].id
+        )
+        db.session.add(project)
+        db.session.commit()
+
+        projectFromDB = list(filter(lambda x : x.projectCode == project.projectCode \
+                                               and x.id == project.id, Projects.query.all()))[0]
+
+        projectJSON = json.dumps(projectFromDB.serialized)
+
+        session["projectData"] = projectJSON
+
+        return redirect(url_for("project"), code=307)
+
+    return render_template("newProject.html", title = "New Project", form=form)
 
 @app.route("/loadProject")
 @login_required
@@ -96,7 +139,11 @@ def loadProject():
 @app.route("/catalogue")
 @login_required
 def catalogue():
-    return render_template("catalogue.html", title = "Catalogue")
+
+    allModels = Models.query.all()
+    allModels.sort(key=lambda x : (x.brand.name, x.mark))
+
+    return render_template("catalogue.html", title = "Catalogue", counter=0, models=allModels)
 
 @app.route("/logout")
 @login_required

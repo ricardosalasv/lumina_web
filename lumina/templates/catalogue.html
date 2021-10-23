@@ -1,5 +1,70 @@
 {% extends "layout.html" %}
 
 {% block body %}
+    
+    <section class="container-fluid gray-background">
+        <div class="row justify-content-center no-decoration">
+            <div class="col">
+                <h1><strong>Lighting Fixtures Catalogue</strong></h1>
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid p-0">
+
+        <div class="row justify-content-center catalogue">
+    
+            <table>
+                
+                <thead>
+                    <tr>
+                        <th scope="col">Brand</th>
+                        <th scope="col" class="hide-responsive">Mark</th>
+                        <th scope="col" class="hide-responsive">Product Code</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Finish</th>
+                        <th scope="col">Lumens (lm)</th>
+                        <th scope="col">Watts (w)</th>
+                        <th scope="col" class="hide-responsive">Fixture Type</th>
+                        <th scope="col" class="hide-responsive">Length</th>
+                        <th scope="col" class="hide-responsive">Width</th>
+                        <th scope="col" class="hide-responsive">Height</th>
+                        <th scope="col" class="hide-responsive">Radius</th>
+                        <th scope="col">Color Temperature</th>
+                        <th scope="col" class="hide-responsive">Usage</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+    
+                    {% for model in models %}
+    
+                        <tr>
+                            <td>{{ model.brand.name }}</td>
+                            <td class="hide-responsive">{{ model.mark }}</td>
+                            <td class="hide-responsive">{{ model.productCode }}</td>
+                            <td width="5%">{{ model.name }}</td>
+                            <td>{{ model.finish.name }}</td>
+                            <td>{{ model.lm }}</td>
+                            <td>{{ model.w }}</td>
+                            <td class="hide-responsive">{{ model.fixtureType }}</td>
+                            <td class="hide-responsive">{{ model.length }}</td>
+                            <td class="hide-responsive">{{ model.width }}</td>
+                            <td class="hide-responsive">{{ model.height }}</td>
+                            <td class="hide-responsive">{{ model.diameter }}</td>
+                            <td width="10%">{{ model.temperature }}</td>
+                            <td class="hide-responsive">{{ model.usage }}</td>
+                            <td>{{ model.price }}</td>
+                        </tr>
+    
+                    {% endfor %}
+                    
+                </tbody>
+            </table>
+
+        </div>
+
+    </section>
    
 {% endblock %}

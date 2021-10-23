@@ -22,6 +22,7 @@ $success: $green-400;
 $gray01: #636363;
 $gray02: #B8B8B8;
 $gray03: #e1e1e1;
+$gray04: #eeeeee;
 $grayText: #0a0a0a;
 $accent: #3288FA;
 $lightBlue: #68AAFF;
@@ -39,6 +40,7 @@ $theme-colors: (
     "gray01":     $gray01,
     "gray02":     $gray02,
     "gray03":     $gray03,
+    "gray04":     $gray04,
     "grayText":   $grayText,
     "accent":     $accent,
     "lightBlue":  $lightBlue
@@ -50,11 +52,15 @@ $theme-colors: (
 // Styling
 
 * {
-    padding: 0;
-    margin: 0;
+    padding: 0px;
+    margin: 0px;
     font-family: Arial, Helvetica, sans-serif;
     color: $grayText;
     box-sizing: border-box;
+}
+
+h1 {
+    margin: 0px;
 }
 
 button, button:focus {
@@ -70,12 +76,73 @@ button, button:focus {
     }
 }
 
-.container-fluid {
-    padding: 20 !important;
+.alert {
+    padding: 0px;
 }
 
-.home-style {
+.catalogue {
+    margin: 0px;
+    border-collapse: collapse;
+
+    thead {
+        background-color: $gray03;
+        border-bottom: solid 3px $grayText;  
+        border-style: hidden;
+        /*Remove all the outside borders*/
+    }
+
+    th {
+        text-align: center;
+        padding: 1%
+    }
+
+    tbody {
+        tr:nth-child(even) {
+            background-color: $gray04;
+        }
+
+        td {
+            border-right: $gray03 solid 1px;
+            text-align: center;
+            padding: 0.5%;
+        }
+    }
+}
+
+.container-fluid {
+    padding: 20;
+}
+
+.form-createProject {
+    padding-left: 25%;
+    padding-right: 25%;
+
+    margin-top: 15%;
+    margin-bottom: auto;
+}
+
+.center-element {
+    width: 100px;
+    margin: 0 auto;
+}
+
+.gray-background {
     background-color: $gray03;
+}
+
+.darkGray-background {
+    background-color: $gray02;
+}
+
+.projectTitle {
+    border-bottom: solid black 6px;
+    margin: -20px;
+    padding: 0px;
+}
+
+.projectTitle-field {
+    padding: 20px;
+    border-right: $gray01 3px solid;
 }
 
 // Style for project buttons
@@ -92,20 +159,20 @@ button, button:focus {
     padding: 5%;
     
     svg {
-        height: 300;
-        width: 300;
+        height: 128;
+        width: 128;
         fill: $grayText;
         fill-rule: evenodd;
 
-        padding: 0 !important;
-        margin: 0 !important;
+        padding: 0;
+        margin: 0;
     }
 
     p {
         font-size: 75px;
         font-weight: 400;
         text-align: center;
-        text-decoration: none !important;
+        text-decoration: none;
     }
 
     .row {
@@ -141,11 +208,11 @@ button, button:focus {
 }
 
 .intBtn-1 {
-    @include interactiveButton();
+    @include interactiveButton;
 }
 
 .intBtn-1-mlp25 {
-    @include interactiveButton();
+    @include interactiveButton;
     margin-left: 2.5%;
 }
 
@@ -226,11 +293,17 @@ button, button:focus {
 
 #navigationBar {
     background-color: $accent;
+    box-shadow: 0px 5px 10px rgb(72, 72, 72);
 }
 
 
 
 // Responsive
+
+@mixin hide-responsive {
+    display: none;
+    visibility: collapse;
+}
 
 @media screen and (max-width: 992px) {
     .nav-item {
@@ -257,6 +330,10 @@ button, button:focus {
         margin-right: 10%;
     }
 
+    .hide-responsive {
+        @include hide-responsive();
+    }
+
 }
 
 @media screen and (max-width: 600px) {
@@ -269,6 +346,10 @@ button, button:focus {
     .intBtn-1-mrp25 {
         @include interactiveButton();
         margin-right: 10%;
+    }
+
+    .hide-responsive {
+        @include hide-responsive();
     }
 
 }

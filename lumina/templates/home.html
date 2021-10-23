@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
 
 {% block body %}
-    <div class="container-fluid home-style">
+    <section class="container-fluid gray-background">
         <div class="row justify-content-center no-decoration">
             <div class="col intBtn-1-mrp25">
-                <form method="GET" action="{{ url_for('project')}}">
+                <form method="GET" action="{{ url_for('newProject')}}">
                     <input type="hidden" name="dummy_form" value="dummy_value">
                     <button type="submit" name="submitButton" value="dummy_value">
                         <div class="row justify-content-center">
@@ -40,5 +40,5 @@
                 </form>
             </div>
         </div>
-    </div>
+    </section>
 {% endblock %}

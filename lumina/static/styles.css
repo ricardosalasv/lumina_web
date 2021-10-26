@@ -14227,15 +14227,137 @@ button.active, button:focus.active {
   background-color: #B8B8B8;
 }
 
+.project-dashboard * {
+  margin: 0px;
+  padding: 0px;
+}
+
+.project-panel1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 20px;
+  border-right: solid #B8B8B8 3px;
+}
+
+.project-panel1 h2, .project-panel1 .h2 {
+  padding-left: 10px;
+}
+
+.project-panel2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 20px;
+}
+
+.project-panel2 h2, .project-panel2 .h2 {
+  padding-left: 10px;
+}
+
+.project-field {
+  margin-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.form-group ul {
+  list-style-type: none;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.form-group ul li {
+  float: left;
+  margin: 0, auto, 0, auto;
+  padding-left: 10%;
+}
+
 .projectTitle {
   border-bottom: solid black 6px;
-  margin: -20px;
+  margin: 0px;
   padding: 0px;
+}
+
+.projectTitleText {
+  padding-left: 10px;
 }
 
 .projectTitle-field {
   padding: 20px;
   border-right: #636363 3px solid;
+}
+
+.toBottom {
+  position: fixed;
+  bottom: 0px;
+}
+
+.summary {
+  background-color: #B8B8B8;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  border-top: black solid 3px;
+}
+
+.calculateButton {
+  width: 100%;
+  height: 75px;
+  background-color: #3288FA;
+  color: #e1e1e1;
+  font-weight: 600;
+  font-size: 2rem;
+  padding: 10px;
+  border-radius: 0px;
+  border: none;
+}
+
+.calculateButton:hover {
+  background-color: #68AAFF;
+}
+
+.calculateButton:active {
+  background-color: #3288FA;
+}
+
+.lockedField {
+  background-color: #eeeeee;
+  -webkit-user-select: none;
+  /* Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE10+/Edge */
+  user-select: none;
+  pointer-events: none;
+}
+
+ul[id='fpShapeSelection'] li label {
+  -webkit-user-select: none;
+  /* Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE10+/Edge */
+  user-select: none;
+  pointer-events: none;
 }
 
 .intBtn-1 {
@@ -14706,6 +14828,53 @@ button.active, button:focus.active {
   .hide-responsive {
     display: none;
     visibility: collapse;
+  }
+  .form-group ul li {
+    float: none;
+    padding-left: 0;
+  }
+  .projectTitleText {
+    font-size: 0.6rem;
+  }
+  .project-panel1 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding: 20px;
+    border: none;
+    border-bottom: solid #B8B8B8 3px;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+  }
+  .project-panel1 h2, .project-panel1 .h2 {
+    padding-left: 10px;
+  }
+  .project-panel2 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding: 20px;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+  }
+  .project-panel2 h2, .project-panel2 .h2 {
+    padding-left: 10px;
   }
 }
 /*# sourceMappingURL=styles.css.map */

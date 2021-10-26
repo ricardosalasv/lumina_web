@@ -1,9 +1,9 @@
 from flask import render_template, flash, redirect, request, url_for, session, jsonify
 from flask_login import login_user, current_user, logout_user, login_required
 from lumina import app, db, bcrypt, login_manager
-from lumina.forms import RegistrationForm, LoginForm, CreateProjectForm
+from lumina.forms import RegistrationForm, LoginForm, CreateProjectForm, ProjectDataForm
 from lumina.models import Users, Projects, Models, Finishes, Arch_Materials, Brands, Floorplan_Shapes
-from lumina.helpers import GenerateProjectCode
+from lumina.helpers import GenerateProjectCode, CalculateProject
 import json
 from datetime import datetime
 import time
@@ -83,15 +83,37 @@ def login():
 @login_required
 def project():
 
+    # Creating a new instance of the form
+    form = ProjectDataForm()
+
+    # Getting the brands and models from the DB
+    # and combining them into a JSON to be parsed by JS
+    # in order to filter the Models dropdown based on the selected brand
+    brands = Brands.query.all()
+    models = Models.query.all()
+
+    # Creating dictionary
+    brandsModelsJSON = {}
+
+    for brand in list(map(lambda x : x.name, brands)):
+        
+        # Filtering the models based on the current brand
+        modelsByBrand = list(filter(lambda x : x.brand.name == brand, models))
+        modelsByBrand = list(map(lambda x : x.serializedForProject, modelsByBrand))
+
+        brandsModelsJSON[brand] = modelsByBrand
+
+    # To execute when the Calculate button is clicked
+    if form.validate_on_submit():
+        
+        CalculateProject(form) # Will return a list as the following [AmountOfFixtures, ProjectCost]
+
     if request.method == "POST":
 
         project = session["projectData"]
         project = json.loads(project)
-        print("---------------------------")
-        print(project)
-        print("---------------------------")
 
-        return render_template("project.html", project=project)
+        return render_template("project.html", project=project, brandsModelsJSON=brandsModelsJSON, form=form)
     
     else:
 
@@ -110,6 +132,7 @@ def newProject():
         
         projectCode = GenerateProjectCode(current_user, projectName)
 
+        # Inserting the project into the DB
         project = Projects(
             name=projectName, 
             projectCode=projectCode, 
@@ -120,9 +143,11 @@ def newProject():
         db.session.add(project)
         db.session.commit()
 
+        # Getting the recently created project from the DB
         projectFromDB = list(filter(lambda x : x.projectCode == project.projectCode \
                                                and x.id == project.id, Projects.query.all()))[0]
 
+        # Getting a JSON object with all the relevant information to pass to the /project page when the redirection happens
         projectJSON = json.dumps(projectFromDB.serialized)
 
         session["projectData"] = projectJSON

@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, FloatField, SelectField, IntegerField, RadioField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
-from lumina.models import Users, Arch_Materials
+from lumina.models import Users, Arch_Materials, Floorplan_Shapes, Models, Brands
 
 class RegistrationForm(FlaskForm):
 
@@ -51,32 +51,73 @@ class CreateProjectForm(FlaskForm):
 
 class ProjectDataForm(FlaskForm):
 
-    roomLength = FloatField("Room Length", validators=[DataRequired()])
-    roomWidth = FloatField("Room Width", validators=[DataRequired()])
-    roomHeight = FloatField("Room Height", validators=[DataRequired()])
-    roomArea = FloatField("Room Area", validators=[DataRequired()])
+    # Room Dimensions
+    roomLength = FloatField("Room Length (m)", validators=[DataRequired()])
+    roomWidth = FloatField("Room Width (m)", validators=[DataRequired()])
+    roomHeight = FloatField("Room Height (m)", validators=[DataRequired()])
+    roomArea = FloatField("Room Area (sqm)", validators=[DataRequired()])
 
     # Getting the architectural materials from the DB
     archMaterials = Arch_Materials.query.all()
+    archMaterials = list(map(lambda x : x.name, archMaterials))
+    archMaterials.sort()
 
+    # Materials
     roomCeilingMaterial = SelectField("Ceiling Material", 
                                     validators=[DataRequired()],
-                                    choices=[])
+                                    choices=archMaterials)
 
     roomWallMaterial = SelectField("Walls Material",
                                     validators=[DataRequired()],
-                                    choices=[])
+                                    choices=archMaterials)
 
     roomFloorMaterial = SelectField("Floor Material",
                                     validators=[DataRequired()],
-                                    choices=[])
+                                    choices=archMaterials)
 
+    # Getting the brands from the DB
+    brands = Brands.query.all()
+    brands = list(map(lambda x : x.name, brands))
+    brands.sort()
+
+    # Selecting the brand in order to filter the shown models
+    brand = SelectField("Fixture Brand", 
+                                    validators=[DataRequired()], 
+                                    choices=brands)
+
+    # Getting the fixture models from the DB
+    fixtureModels = Models.query.all()
+    fixtureModels = list(map(lambda x : x.name, fixtureModels))
+    fixtureModels.sort()
+
+    # Model of the fixture to use or being used
     fixtureModel = SelectField("Fixture Model", 
                                     validators=[DataRequired()], 
-                                    choices=[])
+                                    choices=fixtureModels)
+
+    # Shape of the floorplan
+    fpShapes = Floorplan_Shapes.query.all()
+    fpShapes = list(map(lambda x : x.name, fpShapes))
 
     floorplanShape = RadioField("Floorplan Shape",
                                 validators=[DataRequired()],
-                                choices=[])
+                                choices=fpShapes)
 
+    # Lighting plane height
+    lightingPlaneHeight = FloatField("Lighting Plane Height", validators=[DataRequired()])
+
+    # Lux requirement specified by the user
     luxRequirement = IntegerField("Room Lux Requirement", validators=[DataRequired()])
+
+    # OUTPUTS
+    # Selected fixture's lumens
+    fixtureLumens = IntegerField("Fixture's lumens")
+    
+    # Fixture's finish
+    fixtureFinish = StringField("Fixture's Finish")
+    
+    # Selected fixture's cost
+    fixtureCost = FloatField("Fixture's Cost")
+
+    # Calculate button
+    calculate = SubmitField('Login')

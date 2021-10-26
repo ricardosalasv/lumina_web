@@ -134,15 +134,129 @@ button, button:focus {
     background-color: $gray02;
 }
 
+// Styles for the Project Page
+.project-dashboard {
+
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+}
+
+@mixin project-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+
+    h2 {
+        padding-left: 10px;
+    }
+}
+
+.project-panel1 {
+    @include project-panel();
+    border-right: solid $gray02 3px;
+}
+
+.project-panel2 {
+    @include project-panel();
+}
+
+.project-field {
+    margin-top: 20px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.form-group {
+
+    ul {
+
+        list-style-type: none;
+        background-color: rgba(0,0,0,0);
+        border: 0px;
+        justify-content: space-between;
+        
+        li {
+            float: left;
+            margin: 0, auto, 0, auto;
+            padding-left: 10%;
+        }
+
+    }
+
+}
+
 .projectTitle {
     border-bottom: solid black 6px;
-    margin: -20px;
+    margin: 0px;
     padding: 0px;
+}
+
+.projectTitleText {
+    padding-left: 10px;
 }
 
 .projectTitle-field {
     padding: 20px;
     border-right: $gray01 3px solid;
+}
+
+.toBottom {
+    position: fixed;
+    bottom: 0px;
+}
+
+.summary {
+    background-color: $gray02;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-top: black solid 3px;
+}
+
+.calculateButton {
+    width: 100%;
+    height: 75px;
+    background-color: $accent;
+    color: $gray03;
+    font-weight: 600;
+    font-size: 2rem;
+    padding: 10px;
+    border-radius: 0px;
+    border: none;
+
+    &:hover {
+        background-color: $lightBlue;
+    }
+
+    &:active {
+        background-color: $accent;
+    }
+}
+
+.lockedField {
+    background-color: $gray04;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none;
+    pointer-events: none;
+}
+
+// Locking the selection of the radio buttons' labels in the project page
+ul[id='fpShapeSelection'] {
+    li {
+        label {
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* IE10+/Edge */
+            user-select: none;
+            pointer-events: none;
+        }
+    }
 }
 
 // Style for project buttons
@@ -352,4 +466,29 @@ button, button:focus {
         @include hide-responsive();
     }
 
+    .form-group {
+        ul {
+            li {
+                float: none;
+
+                padding-left: 0;
+            }
+        }
+    }
+
+    .projectTitleText {
+        font-size: 0.6rem;
+    }
+
+    .project-panel1 {
+        @include project-panel();
+        border: none;
+        border-bottom: solid $gray02 3px;
+        justify-content: start;
+    }
+    
+    .project-panel2 {
+        @include project-panel();
+        justify-content: start;
+    }
 }

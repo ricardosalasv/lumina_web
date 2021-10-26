@@ -113,6 +113,18 @@ class Models(db.Model): # Available fixture models
     def __repr__(self):
         return f"""Model('{self.name}, '{self.mark}', '{self.productCode}', '{self.lm}', '{self.w}', '{self.temperature}', '{self.usage}', '{self.price}')"""
 
+    @property
+    def serializedForProject(self):
+
+        return {
+            "id" : self.id,
+            "name": self.name,
+            "price": self.price,
+            "lm": self.lm,
+            "brand" : self.brand.name,
+            "finish" : self.finish.name,
+        }
+
 class Finishes(db.Model): # Available finishes for the fixtures
 
     id = db.Column(db.Integer, primary_key=True)
@@ -149,7 +161,7 @@ class Material_Types(db.Model): # Contains the type of materials or finishes; pl
     def __repr__(self):
         return f"Material_Type('{self.name}')"
 
-projects_materials = Table('association', db.Model.metadata,
+projects_materials = Table('projects_materials', db.Model.metadata,
     Column('project_id', db.ForeignKey('projects.id')),
     Column('archmaterial_id', db.ForeignKey('arch_materials.id'))
 )

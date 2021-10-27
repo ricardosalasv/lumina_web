@@ -79,7 +79,7 @@ def login():
 
     return render_template("login.html", title = "Login", form=form)
 
-@app.route("/project", methods=["GET", "POST"])
+@app.route("/project", methods=["GET", "POST", "PUT"])
 @login_required
 def project():
 
@@ -103,11 +103,19 @@ def project():
 
         brandsModelsJSON[brand] = modelsByBrand
 
-    # To execute when the Calculate button is clicked
-    if form.validate_on_submit():
-        
-        CalculateProject(form) # Will return a list as the following [AmountOfFixtures, ProjectCost]
+    if request.method == "PUT":
 
+        for key, value in request.form.items():
+            print(key, value)
+        
+        for key, value in request.form.items():
+
+            if not value:
+
+                return CalculateProject(request.form, returnZero=True)
+
+        return CalculateProject(request.form)
+    
     if request.method == "POST":
 
         project = session["projectData"]
@@ -119,7 +127,7 @@ def project():
 
         return render_template("project.html", title = "Project", variable="GET")
 
-@app.route("/newProject", methods=["GET", "POST"])
+@app.route("/newProject", methods=["GET"])
 @login_required
 def newProject():
 
@@ -179,3 +187,14 @@ def logout():
     logout_user()
 
     return redirect(url_for('login'))
+
+@app.route("/projectCalculationResult", methods=["POST"])
+@login_required
+def projectCalculationResult():
+
+    result = 0
+
+    # To execute when the Calculate button is clicked
+    print(request.form)
+
+    return render_template("projectCalculationResult.html", title="Project Calculation Result", result=result)

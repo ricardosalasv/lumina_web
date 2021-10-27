@@ -1,4 +1,6 @@
 import math
+from lumina.models import Models
+import json
 
 def GenerateProjectCode(currentUser, projectName):
 
@@ -24,30 +26,37 @@ def GenerateProjectCode(currentUser, projectName):
 
     return projectCode
 
-def CalculateProject(form):
+def CalculateProject(form, returnZero=False):
 
     """
     Lighting calculation based on the Lumen method
     """
+    AmountOfFixtures = 0
+    ProjectCost = 0
+    result = {"AmountOfFixtures" : AmountOfFixtures, 
+              "ProjectCost" : ProjectCost}
+
+    if returnZero:
+        return result
 
     # Outputs
     AmountOfFixtures = None
     ProjectCost = None
 
     # Lighting Preferences
-    lux = form.luxRequirement.data
+    lux = form["luxRequirement"]
 
-    fixtureName = form.fixtureModel.data
-    fixtureBrand = form.brand.data
-    fixtureLumens = form.fixtureLumens.data
-    fixtureCost = form.fixtureCost.data
+    fixtureName = form["fixtureModel"]
+    fixtureBrand = form["brand"]
+    fixtureLumens = form["fixtureLumens"]
+    fixtureCost = form["fixtureCost"]
 
-    fixtureData = [
-        fixtureName,
-        fixtureBrand,
-        fixtureLumens,
-        fixtureCost
-    ]
+    fixtureData = {
+        "fixtureName" : fixtureName,
+        "fixtureBrand" : fixtureBrand,
+        "fixtureLumens" : fixtureLumens,
+        "fixtureCost" : fixtureCost,
+    }
 
     # Verifying the provided fixture data to avoid code injection or manipulation from the front end
     if not VerifyFixtureData(fixtureData):
@@ -55,21 +64,21 @@ def CalculateProject(form):
         AmountOfFixtures = 99999
         ProjectCost = 99999
 
-        return [AmountOfFixtures, ProjectCost]
+        return result
 
     # Floor plan shape
-    fpShape = form.floorplanShape.data
+    fpShape = form["floorplanShape"]
 
     # Room dimensions
-    roomLength = form.roomHeight.data
-    roomWidth = form.roomHeight.data
-    roomHeight = form.roomHeight.data
-    roomArea = form.roomHeight.data
+    roomLength = form["roomLength"]
+    roomWidth = form["roomWidth"]
+    roomHeight = form["roomHeight"]
+    roomArea = form["roomArea"]
 
     # Room Materials
-    ceilingMaterial = form.roomCeilingMaterial.data
-    wallMaterial = form.roomWallMaterial.data
-    floorMaterial = form.roomFloorMaterial.data
+    ceilingMaterial = form["roomCeilingMaterial"]
+    wallMaterial = form["roomWallMaterial"]
+    floorMaterial = form["roomFloorMaterial"]
 
     # Relevant calculation data
     workplaneHeight = 0.85
@@ -79,7 +88,16 @@ def CalculateProject(form):
 
 def VerifyFixtureData(fixtureData):
 
-    # TODO
-    # Verify fixture data against data in the DB
-    pass
+    modelsInDB = Models.query.all()
+
+    matchInDB = list(filter(lambda x : x.name == fixtureData["fixtureName"] and \
+                                       x.price == fixtureData["fixtureCost"] and \
+                                       x.lm == fixtureData["fixtureLumens"] and \
+                                       x.brand == fixtureData["fixtureBrand"], modelsInDB))
+
+    if matchInDB:
+        return True
+
+    else:
+        return False
 

@@ -36,6 +36,9 @@ function main(){
     // Executing showFixtureData() at least once at the beginning
     showFixtureData()
 
+    // Executing AJAX request to calculate the project result on the backend 
+    // and then return the relevant data to be displayed in the frontend
+    document.querySelector("input[name=calculate]").addEventListener("mouseup", CalculateProject)
     
 }
 
@@ -172,6 +175,32 @@ function showFixtureData(){
         }
 
     }
+}
+
+function CalculateProject(){
+
+    var serializedForm = $("form").serialize()
+
+    $.ajax({
+            url: '/project',
+            data: serializedForm,
+            type: 'PUT',
+            success: function(response){
+                console.log(response)
+
+                document.querySelector("#AmountOfFixtures").innerHTML = response.AmountOfFixtures.toString()
+                document.querySelector("#ProjectCost").innerHTML = response.ProjectCost.toString()
+
+                return response
+            },
+            error: function(error){
+                console.log(error)
+                return 0
+            }
+        })
+
+
+
 }
 
 document.addEventListener("DOMContentLoaded", main)

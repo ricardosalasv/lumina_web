@@ -362,21 +362,23 @@ ul[id='fpShapeSelection'] {
     align-self: center;
     margin-left: 5px;
     margin-right: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
     
     a {
         margin: 0;
         padding: 0;
     }
 
-    .rightBorder {
-        border-right: solid;
-        border-color: $grayText;
-    }
+    // .rightBorder {
+    //     border-right: solid;
+    //     border-color: $grayText;
+    // }
 
-    .leftBorder {
-        border-left: solid;
-        border-color: $grayText;
-    }
+    // .leftBorder {
+    //     border-left: solid;
+    //     border-color: $grayText;
+    // }
 }
 
 .no-decoration {

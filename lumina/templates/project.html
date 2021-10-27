@@ -30,7 +30,8 @@
     
                 <div class="row justify-content-center position-relative gray-background">
 
-                    <form action="" method="post">
+                    <form action="" method="POST">
+                        {{ form.hidden_tag()}}
                         <!-- Calculation area -->
                         <div class="row justify-content-center align-items-center position-relative">
                             
@@ -365,7 +366,7 @@
                     <h2>Amount of Fixtures</h2>
                 </div>
                 <div class="row">
-                    <h2><strong>14</strong></h2>
+                    <h2><strong id="AmountOfFixtures">14</strong></h2>
                 </div>
             </div>
 
@@ -374,7 +375,7 @@
                     <h2>Total Cost</h2>
                 </div>
                 <div class="row">
-                   <h2><strong>1450</strong></h2>
+                   <h2><strong id="ProjectCost">1450</strong></h2>
                 </div>
             </div>
         </div>

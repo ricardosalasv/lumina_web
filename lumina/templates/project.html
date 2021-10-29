@@ -30,7 +30,7 @@
     
                 <div class="row justify-content-center position-relative gray-background">
 
-                    <form action="" method="POST">
+                    <form action="" method="" onsubmit="return false;">
                         {{ form.hidden_tag()}}
                         <!-- Calculation area -->
                         <div class="row justify-content-center align-items-center position-relative">
@@ -346,7 +346,7 @@
                         </div>
 
                         <!-- Calculate Button -->
-                        <button id="calculateButton" class="w-100">
+                        <button type="button" id="calculateButton" class="w-100">
                             {{form.calculate(type="submit", class="w-100 calculateButton", value="Calculate")}}
                         </button>
                     </form>
@@ -366,16 +366,16 @@
                     <h2>Amount of Fixtures</h2>
                 </div>
                 <div class="row">
-                    <h2><strong id="AmountOfFixtures">14</strong></h2>
+                    <h2><strong id="AmountOfFixtures">-</strong></h2>
                 </div>
             </div>
 
-            <div class="col text-center">
+            <div class="col text-center total-panel">
                 <div class="row">
                     <h2>Total Cost</h2>
                 </div>
                 <div class="row">
-                   <h2><strong id="ProjectCost">1450</strong></h2>
+                   <h2><strong id="ProjectCost">-</strong></h2>
                 </div>
             </div>
         </div>

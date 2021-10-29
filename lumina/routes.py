@@ -103,10 +103,8 @@ def project():
 
         brandsModelsJSON[brand] = modelsByBrand
 
+    # To execute when the Calculate button is clicked
     if request.method == "PUT":
-
-        for key, value in request.form.items():
-            print(key, value)
         
         for key, value in request.form.items():
 
@@ -127,7 +125,7 @@ def project():
 
         return render_template("project.html", title = "Project", variable="GET")
 
-@app.route("/newProject", methods=["GET"])
+@app.route("/newProject", methods=["GET", "POST"])
 @login_required
 def newProject():
 
@@ -187,14 +185,3 @@ def logout():
     logout_user()
 
     return redirect(url_for('login'))
-
-@app.route("/projectCalculationResult", methods=["POST"])
-@login_required
-def projectCalculationResult():
-
-    result = 0
-
-    # To execute when the Calculate button is clicked
-    print(request.form)
-
-    return render_template("projectCalculationResult.html", title="Project Calculation Result", result=result)

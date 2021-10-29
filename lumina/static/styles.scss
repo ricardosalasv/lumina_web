@@ -212,9 +212,13 @@ button, button:focus {
 
 .summary {
     background-color: $gray02;
-    padding-top: 20px;
-    padding-bottom: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     border-top: black solid 3px;
+}
+
+.grayText {
+    color: $gray04;
 }
 
 .calculateButton {
@@ -406,6 +410,10 @@ ul[id='fpShapeSelection'] {
     -ms-user-select: none;
     user-select: none;
  }
+
+.total-panel {
+    border-left: solid $gray01 3px;
+}
 
 #navigationBar {
     background-color: $accent;

@@ -14312,9 +14312,13 @@ button.active, button:focus.active {
 
 .summary {
   background-color: #B8B8B8;
-  padding-top: 20px;
-  padding-bottom: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   border-top: black solid 3px;
+}
+
+.grayText {
+  color: #eeeeee;
 }
 
 .calculateButton {
@@ -14592,6 +14596,10 @@ ul[id='fpShapeSelection'] li label {
     */
   -ms-user-select: none;
   user-select: none;
+}
+
+.total-panel {
+  border-left: solid #636363 3px;
 }
 
 #navigationBar {

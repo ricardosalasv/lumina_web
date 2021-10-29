@@ -35,6 +35,7 @@ class Projects(db.Model): # Created projects
     roomWallMaterial = db.Column(db.String(40))
     roomFloorMaterial = db.Column(db.String(40))
     luxRequirement = db.Column(db.Integer, default=0)
+    lightingPlaneHeight = db.Column(db.Float, default=0)
     amountOfFixtures = db.Column(db.Integer, default=0)
     totalProjectCost = db.Column(db.Float, default=0)
     dateModified = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
@@ -49,6 +50,7 @@ class Projects(db.Model): # Created projects
 
         return {
             "id" : self.id,
+            "projectCode" : self.projectCode,
             "name": self.name,
             "roomLength" : self.roomLength,
             "roomWidth" : self.roomWidth,

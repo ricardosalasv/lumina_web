@@ -43,7 +43,9 @@ class Projects(db.Model): # Created projects
     # Foreign keys
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     model_id = db.Column(db.Integer, db.ForeignKey('models.id'), nullable=False)
+    model = db.relationship('Models', backref='project', lazy=True)
     fpShape_id = db.Column(db.Integer, db.ForeignKey('floorplan_shapes.id'), nullable=False)
+    fpShape = db.relationship('Floorplan_Shapes', backref='project', lazy=True)
 
     @property
     def serialized(self):
@@ -62,9 +64,13 @@ class Projects(db.Model): # Created projects
             "luxRequirement" : self.luxRequirement,
             "amountOfFixtures" : self.amountOfFixtures,
             "totalProjectCost" : self.totalProjectCost,
+            "lightingPlaneHeight" : self.lightingPlaneHeight,
             "user_id" : self.user_id,
             "model_id" : self.model_id,
+            "model" : self.model.name,
+            "brand" : self.model.brand.name,
             "fpShape_id" : self.fpShape_id,
+            "fpShape" : self.fpShape.name,
         }
 
     def __repr__(self):
@@ -163,7 +169,8 @@ class Material_Types(db.Model): # Contains the type of materials or finishes; pl
     def __repr__(self):
         return f"Material_Type('{self.name}')"
 
-projects_materials = Table('projects_materials', db.Model.metadata,
+projects_materials = Table('projects_materials',
+    db.Model.metadata,
     Column('project_id', db.ForeignKey('projects.id')),
     Column('archmaterial_id', db.ForeignKey('arch_materials.id'))
 )

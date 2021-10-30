@@ -80,7 +80,7 @@ button, button:focus {
     padding: 0px;
 }
 
-.catalogue {
+.dataTable {
     margin: 0px;
     border-collapse: collapse;
 
@@ -97,8 +97,56 @@ button, button:focus {
     }
 
     tbody {
-        tr:nth-child(even) {
-            background-color: $gray04;
+        tr {
+
+            .last-td {
+                padding: 0px;
+
+                position: relative;
+                justify-content: center;
+            }
+            
+            .loadProjectBtn {
+                position: absolute;
+                top: 0px;
+                bottom: 0px;
+                left: 0px;
+                
+                width: 100%;
+                margin: 0px;
+                padding: 0px;
+                
+                border: none;
+                background-color: $lightBlue;
+                color: white;
+                font-weight: 600;
+                user-select: none;
+    
+                &:hover {
+                    background-color: $gray01;
+                }
+    
+                &:active {
+                    background-color: $accent;
+                }
+                
+            }
+            
+            &:nth-child(even) {
+                background-color: $gray04;
+
+                .loadProjectBtn {
+                    background-color: $accent;
+
+                    &:hover {
+                        background-color: $gray01;
+                    }
+        
+                    &:active {
+                        background-color: $accent;
+                    }
+                }
+            }
         }
 
         td {
@@ -272,8 +320,8 @@ ul[id='fpShapeSelection'] {
     color: $grayText;
 
     margin: 10%;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 75px;
+    margin-bottom: 75px;
     padding: 5%;
     
     svg {

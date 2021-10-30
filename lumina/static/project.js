@@ -60,6 +60,7 @@ function fpShapeDetector(){
         regularFpOptions.forEach(function(i){
             i.classList.remove("lockedField")
             i.classList.remove("grayText")
+            i.value = null
         })
     }
     else{
@@ -71,7 +72,6 @@ function fpShapeDetector(){
         regularFpOptions.forEach(function(i){
             i.classList.add("lockedField")
             i.classList.add("grayText")
-            i.value = null
         })
     }
 
@@ -185,7 +185,7 @@ function showFixtureData(){
 function CalculateProject(){
 
     var dataToSubmit = {
-        floorplanShape : document.querySelector("input[name=floorplanShape]").value,
+        floorplanShape : document.querySelector("input[name=floorplanShape]:checked").value,
         roomLength : document.querySelector("input[name=roomLength]").value,
         roomWidth : document.querySelector("input[name=roomWidth]").value,
         roomHeight : document.querySelector("input[name=roomHeight]").value,

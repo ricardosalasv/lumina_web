@@ -114,16 +114,27 @@ def project():
 
         return CalculateProject(request.form)
     
+    # To execute when the project is created
     if request.method == "POST":
+
+        # But if the project is loaded instead, execute this
+        if "projectCode" in request.form.keys():
+
+            projectCode = request.form["projectCode"]
+            projectId = request.form["projectId"]
+
+            selectedProject = list(filter(lambda x : x.id == int(projectId) and \
+                                                    x.projectCode == projectCode, Projects.query.all()))[0]
+            selectedProject = selectedProject.serialized
+            selectedProject["LoadedProject"] = True
+
+            return render_template("project.html", title = "Project", project=selectedProject, brandsModelsJSON=brandsModelsJSON, form=form)
 
         project = session["projectData"]
         project = json.loads(project)
 
-        return render_template("project.html", project=project, brandsModelsJSON=brandsModelsJSON, form=form)
-    
-    else:
-
-        return render_template("project.html", title = "Project", variable="GET")
+        return render_template("project.html", title = "Project", project=project, brandsModelsJSON=brandsModelsJSON, form=form)
+            
 
 @app.route("/newProject", methods=["GET", "POST"])
 @login_required
@@ -162,10 +173,17 @@ def newProject():
 
     return render_template("newProject.html", title = "New Project", form=form)
 
-@app.route("/loadProject")
+@app.route("/loadProject", methods=["GET"])
 @login_required
 def loadProject():
-    return render_template("loadProject.html", title = "Load Project")
+
+    projects = Projects.query.all()
+
+    # Filtering the projects that belong to the current user
+    projects = list(filter(lambda x : x.user_id == current_user.id, projects))
+    projects.sort(key=lambda x : x.dateModified, reverse=True)
+
+    return render_template("loadProject.html", title = "Load Project", projects=projects)
 
 @app.route("/catalogue")
 @login_required

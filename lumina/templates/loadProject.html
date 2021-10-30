@@ -1,5 +1,55 @@
 {% extends "layout.html" %}
 
 {% block body %}
-   
+
+<section class="container-fluid p-0">
+
+    <div class="row justify-content-center dataTable">
+        
+        <table>
+                        
+            <thead>
+                <tr>
+                    <th scope="col">Project</th>
+                    <th scope="col">Floor Plan Shape</th>
+                    <th scope="col" class="hide-responsive">Floor Plan Area</th>
+                    <th scope="col">Lighting Fixture</th>
+                    <th scope="col">Project Cost</th>
+                    <th scope="col" class="hide-responsive">Date Modified</th>
+                    <th scope="col">Load Project</th>
+                </tr>
+            </thead>
+        
+            <tbody>
+        
+                {% for project in projects %}
+        
+                    <tr>
+                        <td>{{ project.name }}</td>
+                        <td>{{ project.fpShape.name }}</td>
+                        <td class="hide-responsive">{{ project.roomArea }}</td>
+                        <td>{{ project.model.brand.name }}, {{ project.model.name }}</td>
+                        <td>{{ project.totalProjectCost }}</td>
+                        <td class="hide-responsive">{{ project.dateModified.strftime('%m-%d-%Y') }}</td>
+                        <td class="last-td">
+                            
+                            <form action="project" method="post">
+
+                                <input type="hidden" name="projectCode" value="{{ project.projectCode }}">
+                                <input type="hidden" name="projectId" value="{{  project.id }}">
+                                <input class="loadProjectBtn" type="submit" value="LOAD">
+
+                            </form>
+                            
+                        </td>
+                    </tr>
+
+    </div>
+
+</section>
+
+        {% endfor %}
+        
+    </tbody>
+</table>
 {% endblock %}

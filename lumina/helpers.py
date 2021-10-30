@@ -99,7 +99,8 @@ def CalculateProject(form, returnZero=False):
     # Checking the shape of the room
     if fpShape != "Rectangular":
 
-        roomLength, roomWidth = math.sqrt(roomArea)
+        roomLength = math.sqrt(roomArea)
+        roomWidth = math.sqrt(roomArea)
         
     # Relevant calculation data
     workplaneHeight = 0.85
@@ -231,9 +232,9 @@ def WriteDataToDB(data, amountOfFixtures, projectCost):
     project.roomWidth = data["roomWidth"]
     project.roomHeight = data["roomHeight"]
     project.roomArea = data["roomArea"]
-    project.roomCeilingMaterial = list(filter(lambda x : x.name == data["roomCeilingMaterial"], archMaterials))[0].id
-    project.roomWallMaterial = list(filter(lambda x : x.name == data["roomWallMaterial"], archMaterials))[0].id
-    project.roomFloorMaterial = list(filter(lambda x : x.name == data["roomFloorMaterial"], archMaterials))[0].id
+    project.roomCeilingMaterial = list(filter(lambda x : x.name == data["roomCeilingMaterial"], archMaterials))[0].name
+    project.roomWallMaterial = list(filter(lambda x : x.name == data["roomWallMaterial"], archMaterials))[0].name
+    project.roomFloorMaterial = list(filter(lambda x : x.name == data["roomFloorMaterial"], archMaterials))[0].name
     project.luxRequirement = data["luxRequirement"]
     project.lightingPlaneHeight = data["lightingPlaneHeight"]
     project.amountOfFixtures = amountOfFixtures

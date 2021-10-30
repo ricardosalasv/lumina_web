@@ -4,13 +4,14 @@
 
     <!-- Passing JSONs from Flask to JS-->
     <script> 
-        var project = JSON.parse('{{ project | tojson | safe}}'); 
+        var project = JSON.parse('{{ project | tojson | safe}}');
         var fixtureList = JSON.parse('{{ brandsModelsJSON | tojson | safe }}');
     </script>
 
     <!-- Loading scripts files -->
     <script src="../static/heightFiller_ProjectPage.js"></script>
     <script src="../static/project.js"></script>
+    <script src="../static/loadProject.js"></script>
 
     <section  class="container-fluid gray-background project-dashboard my-0 mx-0 px-0 py-0">
         
@@ -31,7 +32,7 @@
                 <div class="row justify-content-center position-relative gray-background">
 
                     <form action="" method="" onsubmit="return false;">
-                        {{ form.hidden_tag()}}
+                        {{ form.hidden_tag() }}
                         <!-- Calculation area -->
                         <div class="row justify-content-center align-items-center position-relative">
                             

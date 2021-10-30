@@ -14170,28 +14170,74 @@ button.active, button:focus.active {
   padding: 0px;
 }
 
-.catalogue {
+.dataTable {
   margin: 0px;
   border-collapse: collapse;
 }
 
-.catalogue thead {
+.dataTable thead {
   background-color: #e1e1e1;
   border-bottom: solid 3px #0a0a0a;
   border-style: hidden;
   /*Remove all the outside borders*/
 }
 
-.catalogue th {
+.dataTable th {
   text-align: center;
   padding: 1%;
 }
 
-.catalogue tbody tr:nth-child(even) {
+.dataTable tbody tr .last-td {
+  padding: 0px;
+  position: relative;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.dataTable tbody tr .loadProjectBtn {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  background-color: #68AAFF;
+  color: white;
+  font-weight: 600;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.dataTable tbody tr .loadProjectBtn:hover {
+  background-color: #636363;
+}
+
+.dataTable tbody tr .loadProjectBtn:active {
+  background-color: #3288FA;
+}
+
+.dataTable tbody tr:nth-child(even) {
   background-color: #eeeeee;
 }
 
-.catalogue tbody td {
+.dataTable tbody tr:nth-child(even) .loadProjectBtn {
+  background-color: #3288FA;
+}
+
+.dataTable tbody tr:nth-child(even) .loadProjectBtn:hover {
+  background-color: #636363;
+}
+
+.dataTable tbody tr:nth-child(even) .loadProjectBtn:active {
+  background-color: #3288FA;
+}
+
+.dataTable tbody td {
   border-right: #e1e1e1 solid 1px;
   text-align: center;
   padding: 0.5%;
@@ -14370,8 +14416,8 @@ ul[id='fpShapeSelection'] li label {
   border-width: 10px;
   color: #0a0a0a;
   margin: 10%;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 75px;
+  margin-bottom: 75px;
   padding: 5%;
 }
 
@@ -14428,8 +14474,8 @@ ul[id='fpShapeSelection'] li label {
   border-width: 10px;
   color: #0a0a0a;
   margin: 10%;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 75px;
+  margin-bottom: 75px;
   padding: 5%;
   margin-left: 2.5%;
 }
@@ -14487,8 +14533,8 @@ ul[id='fpShapeSelection'] li label {
   border-width: 10px;
   color: #0a0a0a;
   margin: 10%;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 75px;
+  margin-bottom: 75px;
   padding: 5%;
   margin-right: 2.5%;
 }
@@ -14628,8 +14674,8 @@ ul[id='fpShapeSelection'] li label {
     border-width: 10px;
     color: #0a0a0a;
     margin: 10%;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 75px;
+    margin-bottom: 75px;
     padding: 5%;
     margin-left: 10%;
   }
@@ -14677,8 +14723,8 @@ ul[id='fpShapeSelection'] li label {
     border-width: 10px;
     color: #0a0a0a;
     margin: 10%;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 75px;
+    margin-bottom: 75px;
     padding: 5%;
     margin-right: 10%;
   }
@@ -14733,8 +14779,8 @@ ul[id='fpShapeSelection'] li label {
     border-width: 10px;
     color: #0a0a0a;
     margin: 10%;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 75px;
+    margin-bottom: 75px;
     padding: 5%;
     margin-left: 10%;
   }
@@ -14782,8 +14828,8 @@ ul[id='fpShapeSelection'] li label {
     border-width: 10px;
     color: #0a0a0a;
     margin: 10%;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 75px;
+    margin-bottom: 75px;
     padding: 5%;
     margin-right: 10%;
   }
